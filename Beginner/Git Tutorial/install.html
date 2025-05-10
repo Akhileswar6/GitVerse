@@ -15,24 +15,29 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 
+
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
   * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   color: white;
+  font-family:'Inter', sans-serif;
+
 }
 
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   background-color: #020617;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .navbar {
@@ -50,7 +55,7 @@ body {
 }
 
 .logo a {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "goodspace", sans-serif;
   text-decoration: none;
   font-size: 26px;
   color: #fdfeff;
@@ -65,11 +70,14 @@ body {
       background-color: #0f172a;
       overflow-y: auto;
       padding: 20px;
-      font-family: 'Roboto', sans-serif;
       margin-left: 45px;
+      overflow-y: auto; /* Keep scroll for sidebar only */
+      z-index: 1000;
+      align-self: flex-start; /* Add this */
 }
 
 .sidebar h3 {
+  margin-top: 10px;
   font-size: 20px;
   color: white;
   margin-bottom: 12px;
@@ -104,11 +112,11 @@ body {
   margin-left: 270px;
   padding: 15px;
   width: calc(100% - 270px);
-  font-family: 'Roboto', sans-serif;
+  font-family:'Inter', sans-serif;
   color: white;
   overflow-y: auto;
   padding-top: 50px;
-  margin-top: 50px;
+  margin-top:30px;
 }
 
 .content h1 {
@@ -146,6 +154,25 @@ ul li {
   margin-left: 5px;
 }
 
+ .backnext {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+  margin-bottom: 20px;  
+  margin-right: 10px;
+}
+    .backnext a {
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+    }
+    .backnext a span {
+      margin-right: 5px;
+      color:hsl(210, 6%, 41%);
+    }
+
 .code-container {
   margin-top: 15px;
   margin-bottom: 20px;
@@ -155,13 +182,15 @@ ul li {
   align-items: center;
   width: fit-content;
   color: white;
-  gap: 100px;
+  gap: 80px;
   padding: 6px 10px;
   font-family: Consolas, "Courier New", monospace;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .command span.git {
+   font-family: Consolas, "Courier New", monospace;
+  line-height: 1.4;
   color: #FFFF99;
 }
 
@@ -169,6 +198,9 @@ ul li {
 
 .command span.gita {
   color: #61AFEF; 
+  font-family: Consolas, "Courier New", monospace;
+
+
 
 }
 
@@ -184,16 +216,14 @@ ul li {
   padding: 5px 10px;
   font-size: 14px;
   cursor: pointer;
-  background-color: #2b908f;
+  background-color: #0c4b7e;
   color: white;
   border: none;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
 
-.copy-btn:hover {
-  background-color: #267a79;
-}
+
 
 .copy-btn.copied {
   background-color: #0c3f18;
@@ -244,9 +274,8 @@ hr {
   color: #2196F3;
   font-size: 18px;
   font-weight: 400;
-  margin-top: 40px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+  margin-top: 30px;
+  font-family:'Inter', sans-serif;
   margin-right: 10px;
 }
 
@@ -272,12 +301,12 @@ hr {
   height: 40px;
   font-size: 0.7rem;
   line-height: 14px;
-  letter-spacing: 1.2px;
+  letter-spacing: 0.4px;
   transition: .2s .1s;
   background-image: linear-gradient(90deg, #1c1c1c, #6220fb);
   border: 0 solid;
   overflow: hidden;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .bt1:hover {
@@ -321,25 +350,23 @@ hr {
       position: fixed;
       top: 0;
       left: 0;
-      /* background-color: #2f3e79; */
-      background: linear-gradient(to bottom, #a5d8ff, #3b82f6);
-      background: linear-gradient(to bottom, #60a5fa, #2563eb);
       background: linear-gradient(to bottom,#0f172a, #1e3a8a, #0f172a);
       display: flex;
       flex-direction: column;
       align-items: center;
       z-index: 1001;
       margin-top: 50px;
-      padding-top: 20px;
     }
 
     .icon-sidebar span {
-      font-size: 28px;
+       font-size: 28px;
       
       margin: 20px 0;
       cursor: pointer;
       transition: color 0.3s;
       padding: 5px;
+      margin-top: 23px;
+
     }
 
     .icon-sidebar span:hover {
@@ -351,11 +378,6 @@ hr {
     }
 
 
-
-
-
-
-
      /* Overlay */
      .overlay {
       display: none;
@@ -365,7 +387,7 @@ hr {
       height: 100vh;
       width: 100px;
       z-index: 999;
-    }
+     }
 
     .overlay.active {
       display: block;
@@ -387,8 +409,8 @@ hr {
       }
 
       .content {
-        margin-left: 40px;
-        width: calc(100% - 60px);
+        margin-left: 50px;
+        width: calc(100% - 50px);
         
         
 
@@ -406,6 +428,8 @@ hr {
         color: white;
         margin: 20px 0;
         cursor: pointer;
+        margin-top: 23px;
+
       }
       
 
@@ -502,6 +526,11 @@ hr {
   </script>
 
   <div class="content">
+
+    <div class="backnext">
+      <a href="/Beginner/Git Tutorial/intro.html"><span class="material-symbols-outlined">arrow_back</span><span class="a">Back</span></a>
+      <a href="/Beginner/Git Tutorial/help.html"><span class="b">Next</span><span class="material-symbols-outlined">arrow_forward</a>
+    </div>
     <h1>Git Getting Started</h1>
     <h3>Install Git</h3>
     <p>You can download Git for free from the following website: <a href="https://git-scm.com/downloads/" target="_blank" style="color:#38bdf8;">git-scm.com</a><br>
@@ -517,11 +546,15 @@ hr {
     </ul>
 
     <div class="code-container">
-      <div class="command">
-        <span class="git">git</span> --version
+       <div class="command">
+        <span class="git">git </span>--version
       </div>
       <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+
     </div>
+
+ 
+
     
     <script>
       function copyCommand(btn) {
@@ -548,8 +581,9 @@ hr {
     <div class="note">
       <p>git version 2.47.1.windows.2</p>
     </div>
+<br>
 
-    <hr>
+    
 
     <h3>macOS<img src="/Assets/apple.png" height="25" width="25"></h3>
     <ul>
@@ -590,47 +624,38 @@ hr {
       <p>git version 2.9.5 (Apple Git-154)</p>
     </div>
 
-    <hr>
+    <br>
 
     <h3>Git Config</h3>
     <p>Before you start using Git, you need to set up your Git configuration. This includes setting your username and email address, which will be associated with your commits.</p>
     <ul>
-      <li>Replace "Your Name" with your username.</li>
+      <li>Replace "name" with your username.</li>
     </ul>
 
     <div class="code-container">
       <div class="command">
-        <span class="git">git</span> config --global user.name <span class="gita">"Your Name"</span>
+        <span class="git">git</span> config --global user.name <span class="gita">"name"</span>
       </div>
       <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
     </div>
 
-    <div class="p1">Example</div>
-    <div class="note1">
-      <p><span class="gitc">git</span> config --global user.name <span class="ab">"GitVerse"</span></p>
-    </div>
+    
     
     <ul>
-      <li>Replace "Your email" with your Email-id.</li>
+      <li>Replace "email" with your email-id.</li>
     </ul>
+
     <div class="code-container">
       <div class="command">
-        <span class="git">git</span> config --global user.email <span class="gita">"Your email"</span>
+        <span class="git">git</span> config --global user.email <span class="gita">"email"</span>
       </div>
       <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
     </div>
 
-    <div class="p1">Example</div>
     
-    <div class="note1">
-      <p><span class="gitc">git</span> config --global user.name <span class="ab">"gitverse@gmail.com"</span></p>
-    </div>
 
-    <img src="/Assets/username.png" alt="Git Workflow" style="width: 100%; max-width: 400px; margin-bottom: 20px; border-radius: 8px;"/><br>
-    <img src="/Assets/email.png" alt="Git Workflow" style="width: 100%; max-width: 500px; margin-bottom: 20px; border-radius: 8px;"/>
-
-
-    <hr>
+   <br>
+    
 
     <h3>View your git configuration</h3>
 
@@ -640,7 +665,7 @@ hr {
 
     <div class="code-container">
       <div class="command">
-        git config <span class="git1">user.name</span>
+        <span class="git">git</span> config user.name
       </div>
       <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
     </div>
@@ -651,10 +676,16 @@ hr {
 
     <div class="code-container">
       <div class="command">
-        git config <span class="git1">user.email</span>
+        <span class="git">git</span> config user.email
       </div>
       <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
-    </div>
+    </div><br>
+
+    <h3>Result</h3>
+     <img src="/Assets/username.png" alt="Git Workflow" style="width: 100%; max-width: 400px; margin-bottom: 20px; border-radius: 8px;"/><br>
+    <img src="/Assets/email.png" alt="Git Workflow" style="width: 100%; max-width: 500px; margin-bottom: 20px; border-radius: 8px;"/>
+
+
 
     <script>
       function copyCommand(button) {

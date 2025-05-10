@@ -8,12 +8,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
 
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+          <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       color: white;
+      font-family:'Inter', sans-serif;
+
     }
 
     body {
@@ -25,7 +31,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: "Plus Jakarta Sans", sans-serif;
     }
 
     .navbar {
@@ -43,14 +48,14 @@
     }
 
     .logo a {
-      font-family: 'Montserrat', sans-serif;
+        font-family: "goodspace", sans-serif;
       text-decoration: none;
       font-size: 26px;
       color: #fdfeff;
     }
 
     .sidebar {
-      width: 250px;
+       width: 218px;
       height: calc(100vh - 50px);
       position: fixed;
       top: 50px;
@@ -58,10 +63,14 @@
       background-color: #0f172a;
       overflow-y: auto;
       padding: 20px;
-      font-family: 'Roboto', sans-serif;
+      margin-left: 45px;
+      overflow-y: auto; /* Keep scroll for sidebar only */
+      z-index: 1000;
+      align-self: flex-start; /* Add this */
     }
 
     .sidebar h3 {
+       margin-top: 10px;
       font-size: 20px;
       color: white;
       margin-bottom: 12px;
@@ -101,7 +110,7 @@
       color: white;
       overflow-y: auto;
       padding-top: 50px;
-      margin-top: 50px;
+      margin-top: 30px;
     }
 
    
@@ -143,9 +152,26 @@
       color: #22c55e;
       padding: 2px 4px;
       border-radius: 4px;
-      font-size: 14px;
+      font-size: 15px;
     }
-
+  .backnext {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+  margin-bottom: 20px;  
+  margin-right: 10px;
+}
+    .backnext a {
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+    }
+    .backnext a span {
+      margin-right: 5px;
+      color:hsl(210, 6%, 41%);
+    }
 
 
 
@@ -171,6 +197,8 @@
 
 .note1 span.gitc{
   color: #FFFF99;
+  font-family: Consolas, "Courier New", monospace;
+
 }
 
 
@@ -178,6 +206,15 @@
   font-size: 16px;
   line-height: 1.2;
   font-weight: 100;
+    font-family: Consolas, "Courier New", monospace;
+
+}
+.note1 .ex pre {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 100;
+  font-family: Consolas, "Courier New", monospace;
+
 }
 
 .note2 {
@@ -194,23 +231,19 @@
 
 
 
-.note2 p {
-  font-family: Consolas, "Courier New", monospace;
-}
 
 
 
 
-.note2 .ex1 pre{
+.note2 .ex1 p {
   font-size: 16px;
   line-height: 1.5;
   font-weight: 100;
+    font-family: Consolas, "Courier New", monospace;
+
+
 }
-hr {
-  border: 1px solid #334155;
-  margin: 20px 0;
-  width: 100%;
-}
+
 
 
   
@@ -231,6 +264,9 @@ hr {
 
 .command span.git {
   color: #FFFF99;
+    font-family: Consolas, "Courier New", monospace;
+
+
 }
 
 
@@ -252,16 +288,14 @@ hr {
   padding: 5px 10px;
   font-size: 14px;
   cursor: pointer;
-  background-color: #2b908f;
+  background-color: #0c4b7e;
   color: white;
   border: none;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
 
-.copy-btn:hover {
-  background-color: #267a79;
-}
+
 
 .copy-btn.copied {
   background-color: #0c3f18;
@@ -295,9 +329,8 @@ hr {
   color: #2196F3;
   font-size: 18px;
   font-weight: 400;
-  margin-top: 40px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+  margin-top: 30px;
+  font-family:'Inter', sans-serif;
   margin-right: 10px;
 }
 
@@ -326,12 +359,11 @@ hr {
   height: 40px;
   font-size: 0.7rem;
   line-height: 14px;
-  letter-spacing: 1.2px;
+  letter-spacing: 0.4px;
   transition: .2s .1s;
   background-image: linear-gradient(90deg, #1c1c1c, #6220fb);
   border: 0 solid;
   overflow: hidden;
-  font-family: 'Roboto', sans-serif;
 }
 
 .bt1:hover {
@@ -360,6 +392,114 @@ hr {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #e0e0e0;
 }
+
+
+.icon-sidebar {
+     overflow: hidden;
+      width:45px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: linear-gradient(to bottom,#0f172a, #1e3a8a, #0f172a);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1001;
+      margin-top: 50px;
+    }
+
+    .icon-sidebar span {
+      font-size: 28px;
+      
+      margin: 20px 0;
+      cursor: pointer;
+      transition: color 0.3s;
+      padding: 5px;
+                  margin-top: 23px;
+
+    }
+
+    .icon-sidebar span:hover {
+      color: #5fb4db;
+    }
+
+    .icon-sidebar a {
+      text-decoration: none;
+    }
+
+
+         .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100px;
+      z-index: 999;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-300px);
+        position: fixed;
+        transition: transform 0.3s ease-in-out;
+        width: 270px;
+        margin-left: 0px;
+
+      }
+
+      .sidebar.active {
+        transform: translateX(45px);
+      }
+
+      .content {
+        margin-left: 50px;
+        width: calc(100% - 50px);
+        
+        
+
+
+      }
+      
+      .icon-sidebar {
+        display: flex;
+        align-items: center;
+        
+      }
+
+      .icon-sidebar span {
+        font-size: 28px;
+        color: white;
+        margin: 20px 0;
+        cursor: pointer;
+        margin-top: 23px;
+
+      }
+      
+
+      
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+
+    .menu-book-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
   </style>
 </head>
 
@@ -369,6 +509,12 @@ hr {
       <a href="/index.html">GitVerse</a>
     </div>
   </nav>
+
+  <div class="icon-sidebar">
+    <a href="/index.html"><span class="material-symbols-outlined">home</span></a>
+    <span class="material-symbols-outlined" id="menuBookToggle" onclick="toggleSidebar()">menu_book</span>
+    <a href="/dashboard.html"><span class="material-symbols-outlined">analytics</span></a>
+  </div>
 
   <div class="sidebar">
     <h3>Git Tutorial</h3>
@@ -419,9 +565,22 @@ hr {
         }
       });
     });
+
+
+        function toggleSidebar() {
+  const sidebar = document.querySelector(".sidebar");
+  const overlay = document.getElementById("overlay");
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
+    }
   </script>
 
   <div class="content">
+
+    <div class="backnext">
+      <a href="/Beginner/Git Tutorial/init.html"><span class="material-symbols-outlined">arrow_back</span><span class="a">Back</span></a>
+      <a href="/Beginner/Git Tutorial/commit.html"><span class="b">Next</span><span class="material-symbols-outlined">arrow_forward</a>
+    </div>
     <h1>Git Add</h1>
     <h3>Git Adding New Files</h3>
     <p>You just created your first local Git repo, But it is empty.So add some files using any text editor.<br>
@@ -436,20 +595,17 @@ hr {
 
     <div class="note2">
       <div class="ex1">
-        <p><pre>
-  &lt!DOCTYPE html&gt
-  &lthtml lang="en"&gt
-  &lthead&gt
-    &ltmeta charset="UTF-8"&gt
-    &ltmeta name="viewport" content="width=device-width, initial-scale=1.0"&gt
-    &lttitle&gtBasic HTML Program&lt/title&gt
-  &lt/head&gt
-  &ltbody&gt
-    &lth1&gtHello, World!&lt/h1&gt
-    &ltp&gtThis is git add command.&lt/p&gt
-  &lt/body&gt
+        <p>
+  &lt!DOCTYPE html&gt<br>
+  &lthtml lang="en"&gt<br>
+  &lthead&gt<br>
+   &nbsp;&nbsp; &lttitle&gtBasic HTML Program&lt/title&gt<br>
+  &lt/head&gt<br>
+  &ltbody&gt<br>
+   &nbsp;&nbsp; &lth1&gtHello, World!&lt/h1&gt<br>
+   &nbsp;&nbsp; &ltp&gtThis is git add command.&lt/p&gt<br>
+  &lt/body&gt<br>
   &lt/html&gt
-        </pre>
         </p>
       </div>
     </div>
@@ -468,23 +624,25 @@ hr {
 </ul>
     <div class="note1">
       <div class="ex">
-        <p><pre>
-  On branch master
+        <p>
+          $ git status<br>
+  On branch master<br><br>
 
-  No commits yet
+  No commits yet<br><br>
           
-  Untracked files:
-    (use "git add &ltfile&gt..." to include in what will be committed)
-      index.html
+  Untracked files:<br>
+  &nbsp;&nbsp;(use "git add &ltfile&gt..." to include in what will be committed)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  index.html<br><br>
           
-  nothing added to commit but untracked files present (use "git add" to track)</pre></p>
+  nothing added to commit but untracked files present (use "git add" to track)
+  </p>
       </div>
       </div>
 
       <img src="/Assets/add.png" alt="Git Workflow" style="width: 100%; max-width: 600px; margin-bottom: 20px; border-radius: 8px;"/>
 
     
-      <hr>
+      <br>
       <br>
 
 
@@ -577,7 +735,7 @@ hr {
 
 
 <div class="note">
-  <p><b>Note :</b><code>git add</code> doesn’t actually commit the changes, it just stages them for the next commit.
+  <p>Note :<code style="font-size: 15px;">git add</code> doesn’t actually commit the changes, it just stages them for the next commit.
 
   <br>If you make further changes to a file after staging it with git add, you need to run git add again to stage the new changes.</p>
 </div>
@@ -587,7 +745,7 @@ hr {
 
 
 <div class="message">
-  <p>Next up: Learn about the <code style="font-size: 16px;">git commit</code> command and how it allows you to save your staged changes to the repository with a meaningful message.
+  <p>Next up: Learn about the <code style="font-size: 15px;">git commit</code> command and how it allows you to save your staged changes to the repository with a meaningful message.
 
 </p>
 </div>

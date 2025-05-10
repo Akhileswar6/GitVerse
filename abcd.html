@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Git Command Copy Button</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <!-- Styles -->
+  <style>
+    body {
+      background-color: #020617;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+
+    .copy-block {
+      background-color: #111827;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: fit-content;
+      gap: 10px;
+      font-family: monospace;
+      margin-bottom: 20px;
+    }
+
+    .copy-btn {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .git {
+      color: #38bdf8; /* Optional: highlight the 'git' word */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Git command with copy button -->
+  <div class="copy-block">
+    <span><span class="git">git</span> --version</span>
+    <span class="material-symbols-outlined copy-btn">content_copy</span>
+  </div>
+
+  <!-- JavaScript to handle copy -->
+  <script>
+    document.querySelectorAll('.copy-block .copy-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const commandText = button.parentElement.querySelector('span').textContent.trim();
+        navigator.clipboard.writeText(commandText)
+          .then(() => {
+            button.innerText = 'done';
+            setTimeout(() => {
+              button.innerText = 'content_copy';
+            }, 1000);
+          })
+          .catch(err => {
+            console.error('Copy failed: ', err);
+          });
+      });
+    });
+  </script>
+
+</body>
+</html>

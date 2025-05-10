@@ -33,7 +33,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-     
+
+
     }
 
     .navbar {
@@ -44,10 +45,12 @@
       width: 100%;
       position: fixed;
       top: 0;
+      left: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       z-index: 1000;
+
     }
 
     .logo a {
@@ -126,12 +129,14 @@
       margin-left: 270px;
       padding: 15px;
       width: calc(100% - 270px);
-      font-family: 'Roboto', sans-serif;
       color: white;
       overflow-y: auto;
       padding-top: 50px;
-      margin-top: 40px;
+      margin-top: 30px;
      
+
+
+
     }
 
     .content h1 {
@@ -151,6 +156,25 @@
       line-height: 1.4;
       margin-bottom: 20px;
 
+    }
+
+    .backnext {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+  margin-bottom: 20px;  
+  margin-right: 10px;
+}
+    .backnext a {
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+    }
+    .backnext a span {
+      margin-right: 5px;
+      color:hsl(210, 6%, 41%);
     }
 
     ul li {
@@ -264,16 +288,12 @@
       position: fixed;
       top: 0;
       left: 0;
-      /* background-color: #2f3e79; */
-      background: linear-gradient(to bottom, #a5d8ff, #3b82f6);
-      background: linear-gradient(to bottom, #60a5fa, #2563eb);
       background: linear-gradient(to bottom,#0f172a, #1e3a8a, #0f172a);
       display: flex;
       flex-direction: column;
       align-items: center;
       z-index: 1001;
       margin-top: 50px;
-      padding-top: 20px;
     }
 
     .icon-sidebar span {
@@ -283,6 +303,8 @@
       cursor: pointer;
       transition: color 0.3s;
       padding: 5px;
+      margin-top: 23px;
+
     }
 
     .icon-sidebar span:hover {
@@ -322,7 +344,6 @@
         transition: transform 0.3s ease-in-out;
         width: 270px;
         margin-left: 0px;
-
       }
 
       .sidebar.active {
@@ -330,18 +351,13 @@
       }
 
       .content {
-        margin-left: 40px;
-        width: calc(100% - 60px);
-        
-        
-
-
+        margin-left: 50px;
+        width: calc(100% - 50px);
       }
 
       .icon-sidebar {
         display: flex;
         align-items: center;
-        
       }
 
       .icon-sidebar span {
@@ -349,14 +365,10 @@
         color: white;
         margin: 20px 0;
         cursor: pointer;
+        margin-top: 23px;
+        
       }
-      
- 
-      
     }
-
-   
-
 
   </style>
 </head>
@@ -439,6 +451,12 @@
   
 
   <div class="content">
+
+    <div class="backnext">
+      <a href="/Beginner/git1.html"><span class="material-symbols-outlined">arrow_back</span><span class="a">Back</span></a>
+      <a href="/Beginner/Git Tutorial/install.html"><span class="b">Next</span><span class="material-symbols-outlined">arrow_forward</a>
+    </div>
+
     <h1>Git Introduction</h1>
     <h3>What is Git?</h3>
     <p>Git is a popular version control system that helps developers track changes in source code during software development. It allows multiple developers to collaborate on a project efficiently by keeping a record of every change made to files over time.</p>
