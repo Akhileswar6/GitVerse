@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color: white;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-color: #020617;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .navbar {
+      background-color: #020617;
+      height: 50px;
+      border-bottom: 1px solid gray;
+      padding: 5px 20px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+    }
+
+    .logo a {
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      font-size: 26px;
+      color: #fdfeff;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: calc(100vh - 50px);
+      position: fixed;
+      top: 50px;
+      left: 0;
+      background-color: #0f172a;
+      overflow-y: auto;
+      padding: 20px;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .sidebar h3 {
+      font-size: 20px;
+      color: white;
+      margin-bottom: 12px;
+      font-weight: 200;
+    }
+
+    .sidebar a {
+      display: block;
+      margin: 8px 0;
+      color: white;
+      text-decoration: none;
+      font-size: 14.6px;
+      padding-left: 19px;
+      padding-bottom: 3px;
+      font-weight: 300;
+      transition: color 0.3s, padding-left 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #38bdf8;
+      background-color: #1e293b;
+      border-radius: 5px;
+    }
+
+    .sidebar a.active {
+      background-color: #1e293b;
+      color: #38bdf8;
+      border-radius: 5px;
+    }
+
+    
+    .content {
+      margin-left: 270px;
+      padding: 15px;
+      width: calc(100% - 270px);
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      overflow-y: auto;
+      padding-top: 50px;
+      margin-top: 50px;
+    }
+    .content h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .content h3 {
+      font-size: 21px;
+      margin-bottom: 14px;
+      font-weight: 300;
+    }
+
+    .content p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    ul li {
+      margin: 0.5rem 0;
+      line-height: 1.4;
+    }
+
+    .content ul {
+      list-style: none;
+    }
+
+    .content ul li::before {
+      content:"•  ";  
+      color: white;
+    }
+    
+    .content code{
+      background-color: #0f172a;
+      color: #22c55e;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    
+  
+.code-container {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  background-color: #0f172a;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  color: white;
+  gap: 100px;
+  padding: 6px 10px;
+  font-family: Consolas, "Courier New", monospace;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.command span.git {
+  color: #FFFF99;
+}
+
+
+
+.command span.gita {
+  color: #61AFEF; /* Bright blue, popular in themes like One Dark or Dracula */
+
+}
+
+.command {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+
+.copy-btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #2b908f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.copy-btn:hover {
+  background-color: #267a79;
+}
+
+.copy-btn.copied {
+  background-color: #0c3f18;
+  color: white;
+}
+
+
+
+
+
+.note1 {
+  background-color: #0f172a;
+  border-left: 4px solid #3b82f6;
+  border-radius: 6px;
+  max-width: auto;
+  height: auto;
+  padding: 8px;
+  padding-left: 10px;
+  padding-bottom: 2px;
+  margin-bottom: 20px;
+}
+
+
+
+.note1 p {
+  font-family: Consolas, "Courier New", monospace;
+}
+
+
+.note1 .ex {
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 100;
+}
+
+.note2 {
+  background-color: #0f172a;
+  border-left: 4px solid #3b82f6;
+  border-radius: 6px;
+  max-width: auto;
+  height: auto;
+  padding: 8px;
+  padding-left: 10px;
+  padding-bottom: 2px;
+  margin-bottom: 20px;
+}
+
+
+
+.note2 p {
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.note2 .ex1 {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 100;
+}
+
+hr {
+  border: 1px solid #334155;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.message p {
+  color: #2196F3;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 40px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+
+
+
+.box-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+
+.bt1 {
+  border-radius: .25rem;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  padding-left: 25px;
+  padding-right: 25px;
+  color: #fff;
+  -webkit-clip-path: polygon(0 0, 0 0, 100% 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 100%);
+  clip-path: polygon(0 0, 0 0, 100% 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 100%);
+  height: 40px;
+  font-size: 0.7rem;
+  line-height: 14px;
+  letter-spacing: 1.2px;
+  transition: .2s .1s;
+  background-image: linear-gradient(90deg, #1c1c1c, #6220fb);
+  border: 0 solid;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+.bt1:hover {
+  cursor: pointer;
+  transition: all .3s ease-in;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+
+/* WebKit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 12px; /* size of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e; /* dark track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0; /* light thumb */
+  border-radius: 10px;
+  border: 3px solid #1e1e1e; /* spacing around thumb */
+}
+
+/* Optional: hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #e0e0e0;
+}
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/index.html">GitVerse</a>
+    </div>
+  </nav>
+
+  <div class="sidebar">
+    <h3>Git Tutorial</h3>
+    <a href="/Beginner/Git Tutorial/intro.html">Git Intro</a>
+    <a href="/Beginner/Git Tutorial/install.html">Git Installation</a>
+    <a href="/Beginner/Git Tutorial/help.html">Git Help</a>
+    <a href="/Beginner/Git Tutorial/init.html">Git init</a>
+    <a href="/Beginner/Git Tutorial/add.html">Git add</a>
+    <a href="/Beginner/Git Tutorial/commit.html">Git commit</a>
+    <a href="/Beginner/Git Tutorial/status.html">Git status</a>
+    <a href="/Beginner/Git Tutorial/log.html">Git log</a>
+    <a href="/Beginner/Git Tutorial/clone.html">Git clone</a>
+
+    <h3>Remote Repositories</h3>
+    <a href="remote_intro.html">Remote Repository Intro</a>
+    <a href="remote_current.html">Current Remote</a>
+    <a href="remote_add.html">Add Remote Repository</a>
+    <a href="remote_remove_rename.html">Remove and Rename Repository</a>
+    <a href="push.html">Git Push</a>
+    <a href="pull.html">Git Pull</a>
+    <a href="fetch.html">Git Fetch</a>
+    <a href="upstream.html">Set Upstream Branch</a>
+    <a href="remote_show.html">Git Remote Show</a>
+
+    <h3>Useful Commands</h3>
+    <a href="diff.html">Git diff</a>
+    <a href="show.html">Git show</a>
+    <a href="stash.html">Git stash</a>
+    <a href="tag.html">Git tag</a>
+    <a href="rm.html">Git Remove</a>
+    <a href="mv.html">Git Rename or Move Files</a>
+
+    <h3>Git Help & Docs</h3>
+    <a href="git_help.html">Git help</a>
+    <a href="git_man.html">Git man</a>
+    <a href="git_docs.html">Git Official Website</a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const currentPage = decodeURIComponent(location.pathname); // Decodes spaces, etc.
+      const sidebarLinks = document.querySelectorAll(".sidebar a");
+  
+      sidebarLinks.forEach(link => {
+        const linkHref = link.getAttribute("href");
+        if (currentPage === linkHref) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+
+
+  <div class="content">
+
+  <h1>Git Commit</h1>
+  <h3>Git Staging Environment</h3>
+  <p>The staging environment is a temporary area where you can prepare changes before committing them to the repository. It allows you to review and organize your changes before finalizing them.</p>
+  <p>As you are working, you may be adding, editing and deleting files. But whenever you hit a milestone or finish a part of the work, you should add the files to a Staging Environment.
+  Staged files are files that are ready to be committed to the repository you are working on. You will learn more about <code>commit</code> shortly.</p>
+
+  <ul>
+    <li>For now, we are done working with <code>index.html</code> So we can add it to the Staging Environment.</li>
+    <li>To add a file to the Staging Environment, you can use the <code>git add</code> command followed by the file name.</li>
+  </ul>
+
+  <div class="code-container">
+    <div class="command">
+      <span class="git">git </span>add index.html
+    </div>
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+  </div>
+
+  <ul>
+    <li>  After running the above command, the file <code>index.html</code> is now in the Staging Environment.
+    </li>
+    <li>  To check the status of the Staging Environment, you can use the <code>git status</code> command.
+    </li>
+  </ul>
+  <script>
+    function copyCommand(button) {
+      const command = button.previousElementSibling.textContent.trim();
+      navigator.clipboard.writeText(command).then(() => {
+        button.textContent = "Copied!";
+        button.classList.add("copied");
+        setTimeout(() => {
+          button.textContent = "Copy";
+          button.classList.remove("copied");
+        }, 1500);
+      });
+    }
+  </script>
+
+<br>
+
+
+<div class="note1">
+  <div class="ex">
+    <p><pre>
+  git status
+  On branch master
+      
+  No commits yet
+      
+    Changes to be committed:
+      (use "git rm --cached &ltfile&gt..." to unstage)
+          new file:   index.html</pre></p>
+  </div>
+  </div>
+
+  <hr><br>
+  <p> Note: If you're not familiar with <code>git add</code> or didn't fully understand it, please take a moment to learn about it <a href="/Beginner/Git Tutorial/add.html" target="_blank" style="color:#38bdf8;">here</a> before continuing. Understanding <code>git add</code> is essential for staging changes before committing in Git.</p><br>
+
+  <h3>Git Commit</h3>
+  <p>Now that we have added our file to the Staging Environment, we can commit it. The <code>git commit</code> command is used to save changes to the local repository. It takes a snapshot of the current state of the project and saves it as a new version.</p>
+  <p>When you <code>commit</code>, you are creating a new version of the project that includes all the changes made since the last commit. This allows you to keep track of the history of your project and revert to previous versions if needed.</p>
+  <p>Each <code>commit</code> has a unique identifier (a hash) and includes information about the changes made, the author, and a commit message describing the changes.</p>
+
+
+  <ul>
+    <li>  When we <code>commit</code>, we should always include a message.
+    </li>
+    <li>  The <code>commit</code> message should be a short description of the changes made in that commit. It should be clear and concise, so that anyone looking at the commit history can understand what was changed and why.
+    </li>
+    
+  </ul>
+<br>
+
+  <p>Syntax</p>
+
+  <div class="code-container">
+    <div class="command">
+      <span class="git">git </span>commit -m "message"
+    </div>
+    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+  </div>
+
+  <p>Example</p>
+
+  <div class="note2">
+    <div class="ex1">
+      <p><pre>
+  git commit -m "initial commit"
+  [master (root-commit) f84a1f9] initial commit
+  1 file changed, 0 insertions(+), 0 deletions(-)
+  create mode 100644 index.html
+</pre></p>
+    </div>
+    </div>
+    <ul>
+      <li>The commit command performs a commit, and the -m "message" adds a message.</li>
+    </ul><br>
+
+    <img src="/Assets/commit.png" alt="Git Workflow" style="width: 100%; max-width: 600px; margin-bottom: 20px; border-radius: 8px;"/>
+
+
+   
+    <br><br>
+
+
+
+
+    <h3>Git Workflow</h3>
+    <img src="/Assets/workflow.jpg" alt="Git Workflow" style="width: 100%; max-width: 600px; margin-bottom: 20px;"/>
+    <p>In the above image, you can see the Git workflow. The workflow consists of three main areas: the working directory, the staging area, and the local repository.</p>
+    
+    <ul>
+      <li>
+        The working directory is where you make changes to your files. You can add, edit, or delete files in this area.
+
+    </li>
+      <li>
+        The staging area is where you prepare your changes before committing them. You can add files to the staging area using the <code>git add</code> command.
+
+    </li>
+    <li>
+    The local repository is where your commits are stored. You can view the history of your commits using the <code>git log</code> command.
+
+    </li>
+  </ul>
+<br>
+<br>
+<h3>Git Commit without Stage</h3>
+<p>Sometimes, you may want to commit changes without staging them first. You can do this by using the <code>-a</code> option with the <code>git commit</code> command. This option automatically stages all modified and deleted files before committing.</p>
+<p>Let's add a small update to index.html</p>
+
+<div class="note2">
+  <div class="ex1">
+    <p><pre>
+  &lt!DOCTYPE html&gt
+  &lthtml lang="en"&gt
+  &lthead&gt
+    &ltmeta charset="UTF-8"&gt
+    &ltmeta name="viewport" content="width=device-width, initial-scale=1.0"&gt
+    &lttitle&gtBasic HTML Program&lt/title&gt
+  &lt/head&gt
+  &ltbody&gt
+
+    &ltp&gtThis is git commit command.&lt/p&gt
+    &ltp&gtThis is git commit -a command.&lt/p&gt
+
+  &lt/body&gt
+  &lt/html&gt
+    </pre>
+    </p>
+  </div>
+</div>
+<ul>
+  <li>Now check the status of <code>index.html</code> using <code>git status</code>command.
+  </li>
+  <li>We will see the result as <code>modified: index.html</code>, So let's commit it directly.
+  </li>
+</ul>
+
+<br>
+<p>Example</p>
+<div class="code-container">
+  <div class="command">
+    <span class="git">git </span>commit -a -m "update index.html"
+  </div>
+  <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+</div>
+
+<div class="note2">
+  <div class="ex1">
+    <p><pre>
+  git commit -a -m "update index.html"
+  [master ee8cbff] Update index.html
+  1 file changed, 11 insertions(+)
+</pre></p>
+  </div>
+  </div>
+
+
+
+  
+<div class="message">
+<p>Next up: Learn about the <code style="font-size: 16px;">git status</code> command and how it helps you see which changes are staged, unstaged, or untracked in your repository.</p>
+</p>
+</div>
+
+
+<div class="box-container">
+  <button class="bt1" onclick="location.href='/Beginner/Git Tutorial/add.html'">Previous</button>
+  <button class="bt1" onclick="location.href='/Beginner/Git Tutorial/status.html'">Next</button>
+</div>
+
+</div>
+</body>
+</html>

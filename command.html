@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Commands Copy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            height: 100vh;
+
+        }
+
+        .git-commands-container {
+            background-color: #24292e;
+            color: #ffffff;
+            padding: 16px;
+            border-radius: 10px;
+            font-family: monospace;
+            border: 1px solid #444;
+            width: 500px;
+            box-shadow: 0px 4px 8px rgba(128, 113, 113, 0.2);
+        }
+
+        .git-command-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px;
+            border-bottom: 1px solid #3a3f44;
+        }
+
+        .git-command-box:last-child {
+            border-bottom: none;
+        }
+
+        .git-command {
+            margin: 0;
+            padding: 0 10px;
+            flex-grow: 1;
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        /* Syntax Highlighting */
+        .command {
+            color: #c9d1d9;
+        }
+        
+        .argument {
+            color: #79c0ff;
+        }
+        
+        .message {
+            color: #ffa657;
+        }
+
+        .copy-btn {
+            background-color: #218171;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #084c4c;
+        }
+
+        .copied {
+            background-color: #084244 !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="git-commands-container">
+    
+    <div class="git-command-box">
+        <p class="git-command" id="cmd1">
+            <span class="command">git init</span>
+        </p>
+        <button class="copy-btn" onclick="copyGitCommand('cmd1', this)">Copy</button>
+    </div>
+
+    <div class="git-command-box">
+        <p class="git-command" id="cmd2">
+            <span class="command">git add</span> 
+            <span class="argument">.</span>
+        </p>
+        <button class="copy-btn" onclick="copyGitCommand('cmd2', this)">Copy</button>
+    </div>
+
+    <div class="git-command-box">
+        <p class="git-command" id="cmd3">
+            <span class="command">git commit</span> 
+            <span class="argument">-m</span> 
+            <span class="message">"Initial commit"</span>
+        </p>
+        <button class="copy-btn" onclick="copyGitCommand('cmd3', this)">Copy</button>
+    </div>
+
+    <div class="git-command-box">
+        <p class="git-command" id="cmd4">
+            <span class="command">git branch</span> 
+            <span class="argument">-M</span> 
+            <span class="message">main</span>
+        </p>
+        <button class="copy-btn" onclick="copyGitCommand('cmd4', this)">Copy</button>
+    </div>
+
+    <div class="git-command-box">
+        <p class="git-command" id="cmd5">
+            <span class="command">git remote add origin</span> 
+            <span class="message">URL</span>
+        </p>
+        <button class="copy-btn" onclick="copyGitCommand('cmd5', this)">Copy</button>
+    </div>
+
+</div>
+
+<script>
+    function copyGitCommand(commandId, button) {
+        const commandText = document.getElementById(commandId).innerText;
+
+        navigator.clipboard.writeText(commandText).then(() => {
+            button.textContent = "Copied!";
+            button.classList.add("copied");
+
+            setTimeout(() => {
+                button.textContent = "Copy";
+                button.classList.remove("copied");
+            }, 2000);
+        }).catch(err => {
+            console.error("Failed to copy:", err);
+        });
+    }
+</script>
+
+</body>
+</html>

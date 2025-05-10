@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Command Practice</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #020617;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #38bdf8;
+        }
+
+        #task {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .terminal {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 8px;
+            height: 250px;
+            overflow-y: auto;
+            text-align: left;
+            border: 2px solid #1e293b;
+        }
+
+        #output {
+            white-space: pre-wrap;
+            margin-bottom: 5px;
+        }
+
+        .input-line {
+            display: flex;
+            align-items: center;
+        }
+
+        .prompt {
+            color: #22c55e;
+            margin-right: 5px;
+        }
+
+        #command-input {
+            background: none;
+            border: none;
+            color: white;
+            outline: none;
+            font-family: monospace;
+            width: 100%;
+            caret-color: #38bdf8;
+        }
+
+        #command-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .error {
+            color: #f87171;
+        }
+
+        .success {
+            color: #4ade80;
+        }
+
+        .hint-btn {
+            margin-top: 10px;
+            background: #1e293b;
+            color: #38bdf8;
+            border: 1px solid #38bdf8;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .hint-btn:hover {
+            background: #38bdf8;
+            color: #020617;
+        }
+
+        #hint {
+            margin-top: 10px;
+            font-style: italic;
+            color: #facc15;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Git Command Practice</h2>
+        <p><strong>Task:</strong> <span id="task">Initialize a Git repository</span></p>
+        <button class="hint-btn" onclick="showHint()">💡 Show Hint</button>
+        <p id="hint"></p>
+        <div class="terminal">
+            <div id="output"></div>
+            <div class="input-line">
+                <span class="prompt">$</span>
+                <input type="text" id="command-input" autofocus placeholder="Type Git command and press Enter...">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tasks = [
+            { command: "git init", description: "Initialize a Git repository", hint: "Use 'git' followed by a command to start tracking changes." },
+            { command: "git status", description: "Check the status of your repository", hint: "This command shows modified and staged files." },
+            { command: "git add .", description: "Stage all files for commit", hint: "Use 'git add' to track changes before committing." },
+            { command: "git commit -m 'Initial commit'", description: "Commit changes with a message", hint: "Commits require a message in quotes after '-m'." },
+            { command: "git branch feature", description: "Create a new branch", hint: "Branches allow working on features separately." },
+            { command: "git checkout feature", description: "Switch to the new branch", hint: "This command moves you to a different branch." },
+            { command: "git merge feature", description: "Merge a branch into main", hint: "Combine changes from another branch." },
+            { command: "git log", description: "View commit history", hint: "See all past commits in the repository." },
+        ];
+
+        let taskIndex = 0;
+
+        document.getElementById("command-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                let input = this.value.trim();
+                this.value = "";
+                processCommand(input);
+            }
+        });
+
+        function processCommand(input) {
+            let outputDiv = document.getElementById("output");
+            let currentTask = tasks[taskIndex];
+            let response = "";
+
+            if (input === currentTask.command) {
+                response = `<p class="success">✅ Correct! Task completed: ${currentTask.description}</p>`;
+                taskIndex++;
+                if (taskIndex < tasks.length) {
+                    document.getElementById("task").innerText = tasks[taskIndex].description;
+                    document.getElementById("hint").style.display = "none"; // Hide hint
+                    response += `<p>➡️ Next task: ${tasks[taskIndex].description}</p>`;
+                } else {
+                    response += `<p class="success">🎉 You completed all tasks! Well done!</p>`;
+                }
+            } else {
+                response = `<p class="error">❌ Incorrect command. Try again!</p>`;
+            }
+
+            outputDiv.innerHTML += `<p><span class="prompt">$</span> ${input}</p>`;
+            outputDiv.innerHTML += response;
+            document.getElementById("terminal").scrollTop = outputDiv.scrollHeight;
+        }
+
+        function showHint() {
+            if (taskIndex < tasks.length) {
+                document.getElementById("hint").innerText = "💡 Hint: " + tasks[taskIndex].hint;
+                document.getElementById("hint").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

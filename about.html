@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Git Course Progress Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      padding: 30px;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+      color: #38bdf8;
+    }
+
+    .progress-container {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    #progressText {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar {
+      height: 24px;
+      background: #334155;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #22c55e, #10b981);
+      border-radius: 20px;
+      transition: width 0.4s ease-in-out;
+    }
+
+    .topic {
+      background: #1e293b;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      transition: background 0.3s ease;
+    }
+
+    .topic:hover {
+      background: #273549;
+    }
+
+    .topic h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .complete-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 0.95rem;
+      background: #3b82f6;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .complete-btn:hover {
+      background: #2563eb;
+    }
+
+    .complete-btn:disabled {
+      background: #64748b;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚀 Git Course Progress Tracker</h1>
+
+  <div class="progress-container">
+    <div id="progressText">Progress: 0%</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="topic" id="git-init">
+    <h3>1. Git Init</h3>
+    <button class="complete-btn">Mark as Complete</button>
+  </div>
+
+  <div class="topic" id="git-clone">
+    <h3>2. Git Clone</h3>
+    <button class="complete-btn">Mark as Complete</button>
+  </div>
+
+  <div class="topic" id="git-commit">
+    <h3>3. Git Commit</h3>
+    <button class="complete-btn">Mark as Complete</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const topics = ['git-init', 'git-clone', 'git-commit'];
+      const saved = JSON.parse(localStorage.getItem('completedTopics')) || [];
+
+      topics.forEach(topicId => {
+        const topic = document.getElementById(topicId);
+        const btn = topic.querySelector('.complete-btn');
+
+        if (saved.includes(topicId)) {
+          btn.textContent = 'Completed ✅';
+          btn.disabled = true;
+        }
+
+        btn.addEventListener('click', () => {
+          if (!saved.includes(topicId)) {
+            saved.push(topicId);
+            localStorage.setItem('completedTopics', JSON.stringify(saved));
+            btn.textContent = 'Completed ✅';
+            btn.disabled = true;
+            updateProgress(saved);
+          }
+        });
+      });
+
+      function updateProgress(progress) {
+        const percent = Math.round((progress.length / topics.length) * 100);
+        document.getElementById('progressText').textContent = `Progress: ${percent}%`;
+        document.getElementById('progressFill').style.width = percent + '%';
+      }
+
+      updateProgress(saved);
+    });
+  </script>
+
+</body>
+</html>

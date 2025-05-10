@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color: white;
+      font-family:'Inter', sans-serif;
+
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      min-height: 100vh;;
+      background-color: #020617;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+     
+    }
+
+    .navbar {
+      background-color: #020617;
+      height: 50px;
+      border-bottom: 1px solid gray;
+      padding: 5px 20px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+    }
+
+    .logo a {
+      font-family: "goodspace", sans-serif;
+      text-decoration: none;
+      font-size: 26px;
+      color: #fdfeff;
+    }
+
+     .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+
+    .menu-book-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .sidebar {
+      width: 218px;
+      height: calc(100vh - 50px);
+      position: fixed;
+      top: 50px;
+      left: 0;
+      background-color: #0f172a;
+      overflow-y: auto;
+      padding: 20px;
+      margin-left: 45px;
+      overflow-y: auto; /* Keep scroll for sidebar only */
+      z-index: 1000;
+      align-self: flex-start; /* Add this */
+
+
+    }
+
+    .sidebar h3 {
+      display: block;
+      margin-top: 10px;
+      font-size: 20px;
+      color: white;
+      margin-bottom: 12px;
+      font-weight: 200;
+    }
+
+    .sidebar a {
+      display: block;
+      margin: 8px 0;
+      color: white;
+      text-decoration: none;
+      font-size: 14.6px;
+      padding-left: 19px;
+      padding-bottom: 3px;
+      font-weight: 300;
+      transition: color 0.3s, padding-left 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #38bdf8;
+      background-color: #1e293b;
+      border-radius: 5px;
+    }
+
+    .sidebar a.active {
+      background-color: #1e293b;
+      color: #38bdf8;
+      border-radius: 5px;
+    }
+
+    
+    .content {
+      margin-left: 270px;
+      padding: 15px;
+      width: calc(100% - 270px);
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      overflow-y: auto;
+      padding-top: 50px;
+      margin-top: 40px;
+     
+    }
+
+    .content h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .content h3 {
+      font-size: 21px;
+      margin-bottom: 14px;
+      font-weight: 300;
+    }
+
+    .content p {
+      font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: 20px;
+
+    }
+
+    ul li {
+      margin: 0.5rem 0;
+    }
+
+    .content ul {
+      list-style: none;
+    }
+
+    .content ul li::before {
+      content:"•  ";  
+      color: white;
+    }
+
+    .note {
+      background-color: #0f172a;
+      border-left: 4px solid #3b82f6;
+      padding: 1rem;
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      border-radius: 0.5rem;
+      color: #1f2937;
+    }
+
+    .note p {
+      font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+
+    .box-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+      margin-right: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      border-radius: .25rem;
+      text-transform: uppercase;
+      font-style: normal;
+      font-weight: 400;
+      padding-left: 25px;
+      padding-right: 25px;
+      color: #fff;
+      -webkit-clip-path: polygon(0 0, 0 0, 100% 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 100%);
+      clip-path: polygon(0 0, 0 0, 100% 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 100%);
+      height: 40px;
+      font-size: 0.7rem;
+      line-height: 14px;
+      letter-spacing: 0.4px;
+      transition: .2s .1s;
+      background-image: linear-gradient(90deg, #1c1c1c, #6220fb);
+      border: 0 solid;
+      overflow: hidden;
+    }
+
+    button:hover {
+      cursor: pointer;
+      transition: all .3s ease-in;
+      padding-right: 30px;
+      padding-left: 30px;
+    }
+
+    .message p {
+      color: #2196F3;
+      font-size: 18px;
+      font-weight: 400;
+      margin-top: 30px;
+      font-family: 'inter', sans-serif;
+      margin-right: 10px;
+    }
+
+
+    /* WebKit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 12px; /* size of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e; /* dark track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0; /* light thumb */
+  border-radius: 10px;
+  border: 3px solid #1e1e1e; /* spacing around thumb */
+}
+
+/* Optional: hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #e0e0e0;
+}
+
+
+
+
+
+
+
+
+/* Icon Sidebar */
+.icon-sidebar {
+      overflow: hidden;
+      width:45px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      /* background-color: #2f3e79; */
+      background: linear-gradient(to bottom, #a5d8ff, #3b82f6);
+      background: linear-gradient(to bottom, #60a5fa, #2563eb);
+      background: linear-gradient(to bottom,#0f172a, #1e3a8a, #0f172a);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1001;
+      margin-top: 50px;
+      padding-top: 20px;
+    }
+
+    .icon-sidebar span {
+      font-size: 28px;
+      
+      margin: 20px 0;
+      cursor: pointer;
+      transition: color 0.3s;
+      padding: 5px;
+    }
+
+    .icon-sidebar span:hover {
+      color: #5fb4db;
+    }
+
+    .icon-sidebar a {
+      text-decoration: none;
+    }
+
+
+
+
+
+
+
+     /* Overlay */
+     .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100px;
+      z-index: 999;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-300px);
+        position: fixed;
+        transition: transform 0.3s ease-in-out;
+        width: 270px;
+        margin-left: 0px;
+
+      }
+
+      .sidebar.active {
+        transform: translateX(45px);
+      }
+
+      .content {
+        margin-left: 40px;
+        width: calc(100% - 60px);
+        
+        
+
+
+      }
+
+      .icon-sidebar {
+        display: flex;
+        align-items: center;
+        
+      }
+
+      .icon-sidebar span {
+        font-size: 28px;
+        color: white;
+        margin: 20px 0;
+        cursor: pointer;
+      }
+      
+ 
+      
+    }
+
+   
+
+
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/index.html">GitVerse</a>
+    </div>
+  </nav>
+
+  <div class="icon-sidebar">
+    <a href="/index.html"><span class="material-symbols-outlined">home</span></a>
+    <span class="material-symbols-outlined" id="menuBookToggle" onclick="toggleSidebar()">menu_book</span>
+    <a href="/dashboard.html"><span class="material-symbols-outlined">analytics</span></a>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="sidebar">
+    <h3>Git Tutorial</h3>
+    <a href="/Beginner/Git Tutorial/intro.html">Git Intro</a>
+    <a href="/Beginner/Git Tutorial/install.html">Git Installation</a>
+    <a href="/Beginner/Git Tutorial/help.html">Git Help</a>
+    <a href="/Beginner/Git Tutorial/init.html">Git init</a>
+    <a href="/Beginner/Git Tutorial/add.html">Git add</a>
+    <a href="/Beginner/Git Tutorial/commit.html">Git commit</a>
+    <a href="/Beginner/Git Tutorial/status.html">Git status</a>
+    <a href="/Beginner/Git Tutorial/log.html">Git log</a>
+    <a href="/Beginner/Git Tutorial/clone.html">Git clone</a>
+
+    <h3>Remote Repositories</h3>
+    <a href="remote_intro.html">Remote Repository Intro</a>
+    <a href="remote_current.html">Current Remote</a>
+    <a href="remote_add.html">Add Remote Repository</a>
+    <a href="remote_remove_rename.html">Remove and Rename Repository</a>
+    <a href="push.html">Git Push</a>
+    <a href="pull.html">Git Pull</a>
+    <a href="fetch.html">Git Fetch</a>
+    <a href="upstream.html">Set Upstream Branch</a>
+    <a href="remote_show.html">Git Remote Show</a>
+    <h3>Useful Commands</h3>
+    <a href="diff.html">Git diff</a>
+    <a href="show.html">Git show</a>
+    <a href="stash.html">Git stash</a>
+    <a href="tag.html">Git tag</a>
+    <a href="rm.html">Git Remove</a>
+    <a href="mv.html">Git Rename or Move Files</a>
+    <h3>Git Help & Docs</h3>
+    <a href="git_help.html">Git help</a>
+    <a href="git_man.html">Git man</a>
+    <a href="git_docs.html">Git Official Website</a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const currentPage = decodeURIComponent(location.pathname); // Decodes spaces, etc.
+      const sidebarLinks = document.querySelectorAll(".sidebar a");
+  
+      sidebarLinks.forEach(link => {
+        const linkHref = link.getAttribute("href");
+        if (currentPage === linkHref) {
+          link.classList.add("active");
+        }
+      });
+    });
+
+
+  
+    function toggleSidebar() {
+  const sidebar = document.querySelector(".sidebar");
+  const overlay = document.getElementById("overlay");
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+
+</script>
+
+  
+  
+  
+
+  <div class="content">
+    <h1>Git Introduction</h1>
+    <h3>What is Git?</h3>
+    <p>Git is a popular version control system that helps developers track changes in source code during software development. It allows multiple developers to collaborate on a project efficiently by keeping a record of every change made to files over time.</p>
+    <p>The most widely used modern version control system in the world today is Git. Git is a mature, actively maintained open source project originally developed in 2005 by Linus Torvalds, the famous creator of the Linux operating system kernel.</p>
+    <h3>Why Use Git?</h3>
+    <p>Git helps developers track code changes, collaborate seamlessly, and manage projects efficiently. Its speed, branching, and distributed nature make it the go-to version control system worldwide.</p>
+    <h3>What does Git do?</h3>
+    <ul>
+      <li>Clone a project to work on a local copy</li>
+      <li>Branch and Merge to allow for work on different parts and versions of a project</li>
+      <li>Pull the latest version of the project to a local copy</li>
+      <li>Push local updates to the main project</li>
+    </ul>
+    <br>
+    <img src="/Assets/featured.png" alt="Git Workflow" style="width: 100%; max-width: 600px; margin-top: 20px; border-radius: 10px;"/>
+    <br/>
+    <br>
+    <h3>Git Commands</h3>
+    <p>Git commands are used to perform various operations in Git, such as creating repositories, tracking changes, and collaborating with others. Here are some common Git commands:</p>
+    <ul>
+      <li>git init - Initializes a new Git repository.</li>
+      <li>git clone - Creates a copy of an existing repository.</li>
+      <li>git add - Stages changes for the next commit.</li>
+      <li>git commit - Records changes to the repository.</li>
+      <li>git status - Displays the status of the working directory and staging area.</li>
+      <li>git log - Shows the commit history.</li>
+      <li>git push - Uploads local changes to a remote repository.</li>
+      <li>git pull - Fetches and merges changes from a remote repository.</li>
+    </ul>
+    <p>These commands are just the tip of the iceberg. Git has a rich set of features and commands that can help you manage your code effectively.</p>
+    <div class="note">
+      <p>Don't worry if this feels like a lot right now!</p>
+      <p>In the upcoming topics, you'll learn each of these steps in detail — from initializing a repository to staging, committing, viewing history, and even reverting changes. Take it one step at a time, and you'll master Git in no time!</p>
+    </div>
+    <div class="message">
+      <p>Next up: Learn how to install and set up Git on your system and Configuration.</p>
+    </div>
+    <div class="box-container">
+      <button onclick="location.href='/Beginner/git1.html'">Previous</button>
+      <button onclick="location.href='/Beginner/Git Tutorial/install.html'">Next</button>
+    </div>
+  </div>
+
+
+
+
+
+</body>
+</html>
